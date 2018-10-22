@@ -1,10 +1,30 @@
 <template>
-  <p>Hello There</p>
+  <div class="homeStyle">
+    <div class="leftSide">
+      <div class="topLeftSide">
+        <h3>SignUp</h3>
+      </div>
+      <div class="bottomLeftSide">
+        <h3>Track Your Finances</h3>
+      </div>
+    </div>
+    <div class="rightSide">
+      <div class="topRightSide">
+        <h3>Add Bill & Pay Schedule</h3>
+      </div>
+      <div class="bottomRightSide">
+        <h3>Get Closer to Financial Goals</h3>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
+import 'bootstrap/dist/css/bootstrap.css'
+import 'bootstrap-vue/dist/bootstrap-vue.css'
+
 export default {
-  name: 'HelloWorld',
+  name: 'Home',
   data () {
     return {
       msg: 'Welcome to Your Vue.js App'
@@ -13,20 +33,27 @@ export default {
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h1, h2 {
-  font-weight: normal;
+.homeStyle {
+  height: 100%;
+  display: flex;
+  background: red;
 }
-ul {
-  list-style-type: none;
-  padding: 0;
+.leftSide, .rightSide {
+  display: flex;
+  flex-direction: column;
+  width: 50vw;
+  height: 100%;
 }
-li {
-  display: inline-block;
-  margin: 0 10px;
+.topLeftSide, .bottomLeftSide, .topRightSide, .bottomRightSide {
+  display: flex;
+  height: 50%;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  background: white;
 }
-a {
-  color: #42b983;
+.topLeftSide, .bottomRightSide{
 }
 </style>
