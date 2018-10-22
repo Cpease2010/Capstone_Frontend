@@ -1,9 +1,13 @@
 <template>
-  <div>
-    <b-card bg-variant="success" text-variant="white" header="Success" class="text-center">
-      <p class="card-text">{{bill.companyName}}</p>
+    <b-card bg-variant="success" 
+            text-variant="white" 
+            footer="Click To Edit"
+            class="text-center">
+      <h3 class="card-text">Company Name: {{bill.companyName.toUpperCase()}}</h3>
+      <h3 class="card-text">Bill Name: {{bill.billName.toUpperCase()}}</h3>
+      <h3 class="card-text">Due Date: {{bill.dueDate.slice(0,10)}}</h3>
+      <h3 class="card-text">Amount Due: ${{bill.amountDue}}</h3>
     </b-card>
-  </div>
 </template>
 
 <script>
@@ -14,9 +18,5 @@
 </script>
 
 <style scoped>
-.card-deck .card {
-  flex: none;
-  width: 30%;
-  margin: 20px;
-}
+
 </style>
