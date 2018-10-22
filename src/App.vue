@@ -1,23 +1,27 @@
 <template>
-  <div id="app">
-    <img src="./assets/logo.png">
+  <div id="mainStyle">
+    <Nav/>
     <router-view/>
+    <Footer/>
   </div>
 </template>
 
 <script>
+import 'bootstrap/dist/css/bootstrap.css';
+import 'bootstrap-vue/dist/bootstrap-vue.css';
+import Nav from './components/Nav'
+import Footer from './components/Footer'
 export default {
-  name: 'App'
+  name: 'App',
+  components: {
+    Nav,
+    Footer
+  }
 }
 </script>
 
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+#mainStyle {
+  height: 80vh;
 }
 </style>
