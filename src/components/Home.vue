@@ -1,18 +1,18 @@
 <template>
   <div class="homeStyle">
     <div class="leftSide">
-      <div class="topLeftSide">
+      <div class="middleSection">
         <h3>SignUp</h3>
       </div>
-      <div class="bottomLeftSide">
+      <div class="middleSection">
         <h3>Track Your Finances</h3>
       </div>
     </div>
     <div class="rightSide">
-      <div class="topRightSide">
+      <div class="middleSection">
         <h3>Add Bill & Pay Schedule</h3>
       </div>
-      <div class="bottomRightSide">
+      <div class="middleSection">
         <h3>Get Closer to Financial Goals</h3>
       </div>
     </div>
@@ -45,7 +45,7 @@ export default {
   width: 50vw;
   height: 100%;
 }
-.topLeftSide, .bottomLeftSide, .topRightSide, .bottomRightSide {
+.middleSection {
   display: flex;
   height: 50%;
   width: 100%;
@@ -54,6 +54,5 @@ export default {
   border-radius: 50%;
   background: white;
 }
-.topLeftSide, .bottomRightSide{
-}
+
 </style>
