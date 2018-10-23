@@ -5,14 +5,14 @@
         <b-btn size="lg" v-b-toggle.collapse1>Menu</b-btn>
         <b-collapse id="collapse1">
           <b-nav-item>
-            <router-link to="Home">
+            <router-link to="/">
               Home
             </router-link>
           </b-nav-item>
           <b-nav-item>About</b-nav-item>
           <b-nav-item>How It Works</b-nav-item>
           <b-nav-item>
-            <router-link to="MyAccount">
+            <router-link to="/myaccount">
               My Account
             </router-link>
           </b-nav-item>
