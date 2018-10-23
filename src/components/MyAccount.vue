@@ -31,7 +31,7 @@ export default {
       //******FIX THIS ROUTE TO BE USER SPECIFIC */
       URLS: {
         getAccountURL: "https://corys-capstone.herokuapp.com/user/5bce3c386f9d1d0015f9cbf4",
-        deleteBillURL: "https://corys-capstone.herokuapp.com/bills/"
+        deleteBillURL: "https://corys-capstone.herokuapp.com/bills/",
       },
       accountInfo: [],
       }
