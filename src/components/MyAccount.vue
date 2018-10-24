@@ -21,6 +21,7 @@
 <script>
 import BillCard from './BillCard'
 import AddBillForm from './AddBillForm'
+import AuthService from '../Auth/AuthService'
 export default {
   name: 'MyAccount',
   components: {
@@ -67,6 +68,8 @@ export default {
     fetch(this.URLS.getAccountURL)
       .then(result => result.json())
       .then(account => this.accountInfo = account.user[0])
+      .then(result =>  {let auth = new AuthService(); auth.login()})
+      .then(result => console.log(result))
   }
 }
 </script>
