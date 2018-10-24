@@ -11,7 +11,8 @@
           v-for="bill in accountInfo.bills" 
           :key='bill.id' 
           :bill='bill' 
-          v-on:deleteBill="deleteBill"/>
+          v-on:deleteBill="deleteBill"
+          v-on:editBill="editBill"/>
       </div>
     </b-card-group>
   </div>
@@ -31,7 +32,8 @@ export default {
       //******FIX THIS ROUTE TO BE USER SPECIFIC */
       URLS: {
         getAccountURL: "https://corys-capstone.herokuapp.com/user/5bce3c386f9d1d0015f9cbf4",
-        deleteBillURL: "https://corys-capstone.herokuapp.com/bills/"
+        deleteBillURL: "https://corys-capstone.herokuapp.com/bills/",
+        editBillURL: "https://corys-capstone.herokuapp.com/bills/update/"
       },
       accountInfo: [],
       }
@@ -39,6 +41,16 @@ export default {
   methods: {
     deleteBill: function (bill) {
       this.$http.delete(this.URLS.deleteBillURL+this.accountInfo._id+"/"+bill)
+      .then(result => window.location.reload())
+    },
+    editBill: function (bill) {
+      let updatedBill = {
+        "bills.$.companyName": bill.companyName,
+        "bills.$.billName": bill.billName,
+        "bills.$.dueDate": bill.dueDate,
+        "bills.$.amountDue": bill.amountDue
+      }
+      this.$http.put(this.URLS.editBillURL+this.accountInfo._id+"/"+bill._id,updatedBill)
       .then(result => window.location.reload())
     }
   },
