@@ -10,6 +10,8 @@
     "build": "node build/build.js"
   },
   "dependencies": {
+    "EventEmitter": "^1.0.0",
+    "auth0-js": "^9.8.1",
     "bootstrap-vue": "^2.0.0-rc.11",
     "vue": "^2.5.2",
     "vue-resource": "^1.5.1",
