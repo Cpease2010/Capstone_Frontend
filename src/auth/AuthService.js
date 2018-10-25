@@ -1,7 +1,6 @@
 // src/Auth/AuthService.js
 
 import auth0 from 'auth0-js'
-// import { AUTH_CONFIG } from './auth0-variables'
 import EventEmitter from 'eventemitter3'
 import router from './../router'
 
@@ -29,7 +28,7 @@ export default class AuthService {
     clientID: 'khfWDFwh0V5Oes6oD6dt1ROTPfZaWroJ',
     redirectUri: 'http://localhost:8080/callback',
     responseType: 'token id_token',
-    scope: 'openid',
+    scope: 'openid profile email',
     options
   })
 
@@ -42,9 +41,9 @@ export default class AuthService {
       if (authResult && authResult.accessToken && authResult.idToken) {
         console.log(authResult.userProfile, authResult)
         this.setSession(authResult)
-        router.replace('home')
+        router.replace('myaccount')
       } else if (err) {
-        router.replace('home')
+        router.replace('/')
         console.log(err)
       }
     })
@@ -71,7 +70,7 @@ export default class AuthService {
     this.userProfile = null
     this.authNotifier.emit('authChange', false)
     // navigate to the home route
-    router.replace('home')
+    router.replace('/')
   }
 
   isAuthenticated () {

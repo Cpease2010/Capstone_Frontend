@@ -1,9 +1,9 @@
 <template>
-  <div>
+  <div v-if="authenticated">
     <div class="centerStyle">
       <h1>Welcome to you accout: <br> {{accountInfo.user_name}}</h1>
       <h1>TOTAL BILL DUE: <br> {{getTotal}}</h1>
-      <AddBillForm/>
+      <AddBillForm :userID='userID'/>
     </div>
     <b-card-group deck class="mb-3">
       <div class="billsStyle">
@@ -22,9 +22,11 @@
 import BillCard from './BillCard'
 import AddBillForm from './AddBillForm'
 
+const userID = localStorage.getItem('user_id')
+
 export default {
   name: 'MyAccount',
-  props: ['auth'],
+  props: ['auth','authenticated'],
   components: {
     BillCard,
     AddBillForm
@@ -33,16 +35,17 @@ export default {
     return {
       //******FIX THIS ROUTE TO BE USER SPECIFIC */
       URLS: {
-        getAccountURL: "https://corys-capstone.herokuapp.com/user/5bce3c386f9d1d0015f9cbf4",
+        getAccountURL: "https://corys-capstone.herokuapp.com/user/",
         deleteBillURL: "https://corys-capstone.herokuapp.com/bills/",
         editBillURL: "https://corys-capstone.herokuapp.com/bills/update/"
       },
+      userID,
       accountInfo: [],
       }
   },
   methods: {
     deleteBill: function (bill) {
-      this.$http.delete(this.URLS.deleteBillURL+this.accountInfo._id+"/"+bill)
+      this.$http.delete(this.URLS.deleteBillURL+this.userID+"/"+bill)
       .then(result => window.location.reload())
     },
     editBill: function (bill) {
@@ -52,7 +55,7 @@ export default {
         "bills.$.dueDate": bill.dueDate,
         "bills.$.amountDue": bill.amountDue
       }
-      this.$http.put(this.URLS.editBillURL+this.accountInfo._id+"/"+bill._id,updatedBill)
+      this.$http.put(this.URLS.editBillURL+this.userID+"/"+bill._id,updatedBill)
       .then(result => window.location.reload())
     }
   },
@@ -66,7 +69,8 @@ export default {
     }
   },
   mounted() {
-    fetch(this.URLS.getAccountURL)
+    // this.userID = localStorage.getItem('user_id')
+    fetch(this.URLS.getAccountURL+this.userID)
       .then(result => result.json())
       .then(account => this.accountInfo = account.user[0])
   }

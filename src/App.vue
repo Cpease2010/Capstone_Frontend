@@ -1,8 +1,8 @@
 <template>
   <div id="mainStyle">
     <Nav/>
-    <b-btn @click="login()">AuthIn</b-btn>
-    <b-btn @click="logout()">AuthOut</b-btn>
+    <b-btn v-if="!authenticated" @click="login()">AuthIn</b-btn>
+    <b-btn v-if="authenticated" @click="logout()">AuthOut</b-btn>
     <router-view 
       :auth="auth" 
       :authenticated="authenticated">

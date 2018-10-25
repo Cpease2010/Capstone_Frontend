@@ -27,10 +27,11 @@
 <script>
 export default {
   name: 'AddBillForm',
+  props: ['userID'],
   data () {
     return {
       //******FIX THIS ROUTE TO BE USER SPECIFIC */
-      addBillURL: "https://corys-capstone.herokuapp.com/bills/add/5bce3c386f9d1d0015f9cbf4",
+      addBillURL: "https://corys-capstone.herokuapp.com/bills/add/",
       addBillObject: {
         companyName: "",
         billName: "",
@@ -41,7 +42,7 @@ export default {
   },
   methods: {
     addBill: function (){
-      this.$http.put(this.addBillURL, this.addBillObject)
+      this.$http.put(this.addBillURL+this.userID, this.addBillObject)
       .then(result => window.location.reload())
     }
   }
