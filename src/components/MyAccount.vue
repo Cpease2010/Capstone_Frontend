@@ -69,6 +69,8 @@ export default {
     fetch(this.URLS.getAccountURL)
       .then(result => result.json())
       .then(account => this.accountInfo = account.user[0])
+      .then(result =>  {let auth = new AuthService(); auth.login()})
+      .then(result => console.log(result))
   }
 }
 </script>
