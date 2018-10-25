@@ -21,8 +21,10 @@
 <script>
 import BillCard from './BillCard'
 import AddBillForm from './AddBillForm'
+
 export default {
   name: 'MyAccount',
+  props: ['auth'],
   components: {
     BillCard,
     AddBillForm
