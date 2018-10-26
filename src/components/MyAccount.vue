@@ -63,12 +63,15 @@ export default {
     getUserID: function (auth = this.auth) {
       return new Promise(function(resolve, reject) {
         const user = { 
-          user_ID: localStorage.getItem('user_id'), 
+          user_ID: localStorage.getItem('user_id'),
           user_name: localStorage.getItem('user_name'),
           email: localStorage.getItem('email')
-          }        
+          }
         resolve(user)
       })
+    },
+    userLogin: function (user) {
+      return this.$http.post(this.URLS.getAccountURL+user.user_ID, user)
     }
   },
   computed: {
@@ -82,11 +85,12 @@ export default {
   },
   mounted() {
       this.getUserID() 
-      .then(user => 
-      this.$http.post(this.URLS.getAccountURL+user.user_ID, user)
-      )
+      .then(user => this.userLogin(user))
       .then(result => result.json())
-      .then(account => this.accountInfo = account.newUser)
+      .then(account => {
+        this.accountInfo = account.newUser
+        this.userID = account.newUser.user_ID
+        })
   }
 }
 </script>

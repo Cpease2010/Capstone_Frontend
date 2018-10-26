@@ -2,7 +2,15 @@
   <div>
     <b-navbar class="navStyle" variant="faded">
       <b-navbar-nav>
-        <b-btn size="lg" v-b-toggle.collapse1>Menu</b-btn>
+        <b-nav-item>
+          <b-btn v-b-toggle.collapse1>Menu</b-btn>
+        </b-nav-item>
+        <b-nav-item>
+          <b-btn v-if="!authenticated" @click="auth.login()">LogIn</b-btn>
+        </b-nav-item>
+        <b-nav-item>
+          <b-btn v-if="authenticated" @click="auth.logout()">LogOut</b-btn>
+        </b-nav-item>
         <b-collapse id="collapse1">
           <b-nav-item>
             <router-link to="/">
@@ -23,8 +31,10 @@
 </template>
 
 <script>
+
 export default {
-  name: 'Nav'
+  name: 'Nav',
+  props: ['auth','authenticated']
 }
 </script>
 
