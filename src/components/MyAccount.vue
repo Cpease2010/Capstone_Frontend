@@ -66,17 +66,12 @@ export default {
     },
     getUserID: function (auth = this.auth) {
       return new Promise(function(resolve, reject) {
-<<<<<<< HEAD
-        const userID = localStorage.getItem('user_id')
-        resolve(userID)
-=======
         const user = { 
           user_ID: localStorage.getItem('user_id'), 
           user_name: localStorage.getItem('user_name'),
           email: localStorage.getItem('email')
           }        
         resolve(user)
->>>>>>> master
       })
     }
   },
