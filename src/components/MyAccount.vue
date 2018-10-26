@@ -86,13 +86,8 @@ export default {
   },
   mounted() {
       this.getUserID() 
-<<<<<<< HEAD
-      .then(userID => 
-      this.$http.post(this.URLS.addAccountURL+userID,{})
-=======
       .then(user => 
       this.$http.post(this.URLS.addAccountURL+user.user_ID, user)
->>>>>>> master
       )
       .then(result => result.json())
       .then(account => this.accountInfo = account.newUser)
