@@ -71,7 +71,9 @@ export default {
       })
     },
     userLogin: function (user) {
-      return this.$http.post(this.URLS.getAccountURL+user.user_ID, user)
+      if (user.user_ID) {
+        return this.$http.post(this.URLS.getAccountURL+user.user_ID, user)
+      }
     }
   },
   computed: {
