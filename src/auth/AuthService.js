@@ -26,7 +26,7 @@ export default class AuthService {
   auth0 = new auth0.WebAuth({
     domain: 'undercoverdev.auth0.com',
     clientID: 'khfWDFwh0V5Oes6oD6dt1ROTPfZaWroJ',
-    redirectUri: 'http://localhost:8080/callback',
+    redirectUri: 'https://foundationfinance-f81fc.firebaseapp.com/callback',
     responseType: 'token id_token',
     scope: 'openid profile email',
     options
