@@ -23,7 +23,7 @@ import BillCard from './BillCard'
 import AddBillForm from './AddBillForm'
 import { Promise } from 'bluebird';
 
-const userID = localStorage.getItem('user_id')
+// const userID = localStorage.getItem('user_id')
 
 export default {
   name: 'MyAccount',
@@ -86,8 +86,13 @@ export default {
   },
   mounted() {
       this.getUserID() 
+<<<<<<< HEAD
+      .then(userID => 
+      this.$http.post(this.URLS.addAccountURL+userID,{})
+=======
       .then(user => 
       this.$http.post(this.URLS.addAccountURL+user.user_ID, user)
+>>>>>>> master
       )
       .then(result => result.json())
       .then(account => this.accountInfo = account.newUser)
