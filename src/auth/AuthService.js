@@ -58,6 +58,8 @@ export default class AuthService {
     localStorage.setItem('id_token', authResult.idToken)
     localStorage.setItem('expires_at', expiresAt)
     localStorage.setItem('user_id', authResult.idTokenPayload.sub)
+    localStorage.setItem('user_name', authResult.idTokenPayload.name)
+    localStorage.setItem('email', authResult.idTokenPayload.email)
     this.authNotifier.emit('authChange', { authenticated: true })
   }
 
@@ -67,6 +69,8 @@ export default class AuthService {
     localStorage.removeItem('id_token')
     localStorage.removeItem('expires_at')
     localStorage.removeItem('user_id')
+    localStorage.removeItem('user_name')
+    localStorage.removeItem('email')
     this.userProfile = null
     this.authNotifier.emit('authChange', false)
     // navigate to the home route

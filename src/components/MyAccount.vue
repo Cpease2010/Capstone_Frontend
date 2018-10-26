@@ -42,6 +42,7 @@ export default {
         editBillURL: "https://corys-capstone.herokuapp.com/bills/update/"
       },
       accountInfo: [],
+      userID
       }
   },
   methods: {
@@ -65,8 +66,17 @@ export default {
     },
     getUserID: function (auth = this.auth) {
       return new Promise(function(resolve, reject) {
+<<<<<<< HEAD
         const userID = localStorage.getItem('user_id')
         resolve(userID)
+=======
+        const user = { 
+          user_ID: localStorage.getItem('user_id'), 
+          user_name: localStorage.getItem('user_name'),
+          email: localStorage.getItem('email')
+          }        
+        resolve(user)
+>>>>>>> master
       })
     }
   },
@@ -81,8 +91,13 @@ export default {
   },
   mounted() {
       this.getUserID() 
+<<<<<<< HEAD
       .then(userID => 
       this.$http.post(this.URLS.addAccountURL+userID,{})
+=======
+      .then(user => 
+      this.$http.post(this.URLS.addAccountURL+user.user_ID, user)
+>>>>>>> master
       )
       .then(result => result.json())
       .then(account => this.accountInfo = account.newUser)
