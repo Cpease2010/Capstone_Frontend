@@ -3,7 +3,7 @@
     <div class="centerStyle">
       <h1>Welcome to you accout: <br> {{accountInfo.user_name}}</h1>
       <h1>TOTAL BILL DUE: <br> {{getTotal}}</h1>
-      <AddBillForm :userID='userID'/>
+      <AddBillForm />
     </div>
     <b-card-group deck class="mb-3">
       <div class="billsStyle">
@@ -21,8 +21,9 @@
 <script>
 import BillCard from './BillCard'
 import AddBillForm from './AddBillForm'
+import { Promise } from 'bluebird';
 
-const userID = localStorage.getItem('user_id')
+// const userID = localStorage.getItem('user_id')
 
 export default {
   name: 'MyAccount',
@@ -35,15 +36,19 @@ export default {
     return {
       //******FIX THIS ROUTE TO BE USER SPECIFIC */
       URLS: {
+        addAccountURL: "https://corys-capstone.herokuapp.com/user/",
         getAccountURL: "https://corys-capstone.herokuapp.com/user/",
         deleteBillURL: "https://corys-capstone.herokuapp.com/bills/",
         editBillURL: "https://corys-capstone.herokuapp.com/bills/update/"
       },
-      userID,
       accountInfo: [],
       }
   },
   methods: {
+    addUser: function () {
+      this.$http.post(this.URLS.addAccountURL+this.userID)
+      .then(result => window.location.reload())
+    },
     deleteBill: function (bill) {
       this.$http.delete(this.URLS.deleteBillURL+this.userID+"/"+bill)
       .then(result => window.location.reload())
@@ -55,8 +60,14 @@ export default {
         "bills.$.dueDate": bill.dueDate,
         "bills.$.amountDue": bill.amountDue
       }
-      this.$http.put(this.URLS.editBillURL+this.userID+"/"+bill._id,updatedBill)
+      this.$http.put(this.URLS.editBillURL+this.userID+"/"+bill._id, updatedBill)
       .then(result => window.location.reload())
+    },
+    getUserID: function (auth = this.auth) {
+      return new Promise(function(resolve, reject) {
+        const userID = localStorage.getItem('user_id')
+        resolve(userID)
+      })
     }
   },
   computed: {
@@ -69,10 +80,12 @@ export default {
     }
   },
   mounted() {
-    // this.userID = localStorage.getItem('user_id')
-    fetch(this.URLS.getAccountURL+this.userID)
+      this.getUserID() 
+      .then(userID => 
+      this.$http.post(this.URLS.addAccountURL+userID,{})
+      )
       .then(result => result.json())
-      .then(account => this.accountInfo = account.user[0])
+      .then(account => this.accountInfo = account.newUser)
   }
 }
 </script>
