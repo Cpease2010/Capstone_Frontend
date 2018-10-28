@@ -5,15 +5,15 @@
     </div>
     <div v-if="authenticated">
       <div class="centerStyle">
-        <h1>Welcome to you accout: <br> {{accountInfo.user_name}}</h1>
+        <h1>Welcome to your account: <br> {{accountInfo.user_name}}</h1>
         <h1>TOTAL BILL DUE: <br> {{getTotal}}</h1>
-        <AddBillForm />
+        <AddBillForm :userID="userID"/>
       </div>
       <b-card-group deck class="mb-3">
-        <div class="billsStyle">
-          <BillCard v-for="bill in accountInfo.bills" :key='bill.id' :bill='bill' v-on:deleteBill="deleteBill"
+          <BillCard v-for="bill in accountInfo.bills" 
+            :key='bill.id' :bill='bill' 
+            v-on:deleteBill="deleteBill"
             v-on:editBill="editBill" />
-        </div>
       </b-card-group>
     </div>
   </div>
@@ -98,24 +98,12 @@ export default {
 </script>
 
 <style scoped>
-.billsStyle{
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: center;
-  width: 100%;
-}
-
-.card-deck .card {
-  flex: 2 1 auto;
-  width: 40%;
-  margin: 20px;
-}
 
 .centerStyle {
   display: flex;
   flex-direction: column;
   text-align: center;
+  padding-bottom: 10px;
 }
 
 </style>

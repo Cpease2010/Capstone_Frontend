@@ -4,11 +4,12 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import BootstrapVue from 'bootstrap-vue'
+import { FormInput } from 'bootstrap-vue/es/components';
 import VueResource from "vue-resource";
 
 
 Vue.config.productionTip = false
-
+Vue.use(FormInput);
 Vue.use(VueResource);
 Vue.use(BootstrapVue)
 /* eslint-disable no-new */
