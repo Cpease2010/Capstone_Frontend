@@ -7,14 +7,18 @@
       <div class="centerStyle">
         <h1>Welcome to your account: <br> {{accountInfo.user_name}}</h1>
         <h1>TOTAL BILL DUE: <br> {{getTotal}}</h1>
-        <AddBillForm :userID="userID"/>
+        <AddBillForm :userID="userID" />
       </div>
-      <b-card-group deck class="mb-3">
-          <BillCard v-for="bill in accountInfo.bills" 
-            :key='bill.id' :bill='bill' 
-            v-on:deleteBill="deleteBill"
-            v-on:editBill="editBill" />
-      </b-card-group>
+      <b-container>
+        <b-row>
+          <b-col sm="12" class="p-0">
+            <b-row>
+              <BillCard v-for="bill in accountInfo.bills" :key='bill.id' :bill='bill' v-on:deleteBill="deleteBill"
+                v-on:editBill="editBill" />
+            </b-row>
+          </b-col>
+        </b-row>
+      </b-container>
     </div>
   </div>
 </template>

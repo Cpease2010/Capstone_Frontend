@@ -1,30 +1,25 @@
 <template>
+<b-col md="3 p-1">
   <b-card bg-variant="success" text-variant="white" class="text-center">
-    <h3 class="card-text">Company Name: {{bill.companyName.toUpperCase()}}</h3>
-    <h3 class="card-text">Bill Name: {{bill.billName.toUpperCase()}}</h3>
-    <h3 class="card-text">Due Date: {{bill.dueDate.slice(0,10)}}</h3>
-    <h3 class="card-text">Amount Due: ${{bill.amountDue}}</h3>
-
+    <h5 class="card-text">{{bill.companyName.toUpperCase()}}</h5>
+    <h5 class="card-text">{{bill.billName.toUpperCase()}}</h5>
+    <h5 class="card-text">{{bill.dueDate.slice(0,10)}}</h5>
+    <h5 class="card-text">${{bill.amountDue}}</h5>
     <b-btn @click="showEditBill">Edit</b-btn>
     <b-btn v-on:click="deleteBill">Delete</b-btn>
     <b-container fluid class="my-3">
       <form v-show="edit" @submit.prevent.self="editBill">
         <b-form-group>
-          <b-row>
-                <b-col sm="12" class="p-0">
-                    <b-col sm="7 mx-auto">
-              <b-form-input :type="'text'" :placeholder="bill.companyName"  required="true" readonly="true"></b-form-input>
-              <b-form-input :type="'text'" :placeholder="bill.billName" required="true"></b-form-input>
-              <b-form-input :type="'number'" :placeholder="bill.amountDue" required="true"></b-form-input>
-              <b-form-input :type="'date'" :placeholder="bill.dueDate" required="true"></b-form-input>
-            </b-col>
-                </b-col>
-              </b-row>
+            <b-form-input :type="'text'" v-model="bill.companyName" required></b-form-input>
+            <b-form-input :type="'text'" v-model="bill.billName" required></b-form-input>
+            <b-form-input :type="'number'" v-model="bill.amountDue" required></b-form-input>
+            <b-form-input :type="'date'" v-model="bill.dueDate" required></b-form-input>
         </b-form-group>
       </form>
     </b-container>
-          <b-button v-show="edit" type="submit">Add Bill</b-button>
+    <b-button v-show="edit" type="submit">Add Bill</b-button>
   </b-card>
+  </b-col>
 </template>
 
 <script>

@@ -9,10 +9,9 @@
               <b-row>
                 <b-col sm="12 p-0">
                     <b-col sm="5 mx-auto">
-                      <b-form-input :type="'text'" placeholder="Verizon" v-model="addBillObject.companyName" required="true"></b-form-input>
-                      <b-form-input :type="'text'" placeholder="Phone Bill" v-model="addBillObject.billName" required="true"></b-form-input>
-                      <b-form-input :type="'number'" placeholder="100" v-model="addBillObject.amountDue" required="true"></b-form-input>
-                      <b-form-input :type="'date'" placeholder="Please enter Due Date" v-model="addBillObject.dueDate" required="true"></b-form-input>
+                      <b-form-input :type="'text'" placeholder="Verizon" v-model="addBillObject.companyName" required></b-form-input>
+                      <b-form-input :type="'text'" placeholder="Phone Bill" v-model="addBillObject.billName" required></b-form-input>
+                      <b-form-input :type="'number'" placeholder="100" v-model="addBillObject.amountDue" required></b-form-input>                      <b-form-input :type="'date'" placeholder="Please enter Due Date" v-model="addBillObject.dueDate" required></b-form-input>
                     </b-col>
                 </b-col>
               </b-row>
