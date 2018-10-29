@@ -13,7 +13,7 @@
         <b-button-group class="mx-auto my-3 p-1">
           <b-btn @click="showEditBill">Edit</b-btn>
           <b-btn @click="deleteBill">Delete</b-btn>
-          <b-btn v-if="edit">Submit</b-btn>
+          <b-btn v-if="edit" @click="editBill">Submit</b-btn>
         </b-button-group>
       </b-button-toolbar>
       <b-container fluid>
