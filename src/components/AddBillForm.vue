@@ -1,7 +1,7 @@
 <template>
   <div>
     <b-container fluid>
-        <form @submit="addBill">
+        <form @submit.prevent.self="addBill">
       <div class="mx-auto p-3">
           <b-button class="mx-auto" type="submit">Add Bill</b-button>
       </div>
@@ -30,7 +30,7 @@ export default {
   data () {
     return {
       //******FIX THIS ROUTE TO BE USER SPECIFIC */
-      addBillURL: "http://localhost:3000/bills/add/",
+      addBillURL: "https://corys-capstone.herokuapp.com/bills/add/",
       addBillObject: {
         companyName: "",
         billName: "",
