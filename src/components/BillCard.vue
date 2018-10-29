@@ -1,29 +1,33 @@
 <template>
-    <b-card bg-variant="success" 
-            text-variant="white" 
-            class="text-center">
-      <h3 class="card-text">Company Name: {{bill.companyName.toUpperCase()}}</h3>
-      <h3 class="card-text">Bill Name: {{bill.billName.toUpperCase()}}</h3>
-      <h3 class="card-text">Due Date: {{bill.dueDate.slice(0,10)}}</h3>
-      <h3 class="card-text">Amount Due: ${{bill.amountDue}}</h3>
-      <b-btn @click="showEditBill">Edit</b-btn>
-      <b-btn v-on:click="deleteBill">Delete</b-btn>
-      <form v-show="edit" @submit.prevent.self="editBill">
-        <label for="companyName">Company Name: </label>
-        <input type="text" v-model="bill.companyName" name="companyName" id="companyName">
-        <br>
-        <label for="billName">Bill Name: </label>
-        <input type="text" v-model="bill.billName"  name="billName" id="billName">
-        <br>
-        <label for="dueDate">Due Date: </label>
-        <input type="text" v-model="bill.dueDate" name="dueDate" id="dueDate">
-        <br>
-        <label for="amountDue">Amount Due: </label>
-        <input type="number" v-model="bill.amountDue" name="amountDue" id="amountDue">
-        <br>
-        <button type="submit" >Submit Changes</button>
-      </form>
+  <b-col md="3 p-1">
+    <b-card bg-variant="" text-variant="black" class="m-0 text-center">
+      <div v-show="!edit">
+        <b-list-group>
+          <b-list-group-item button>{{bill.companyName.toUpperCase()}}</b-list-group-item>
+          <b-list-group-item button>{{bill.billName.toUpperCase()}}</b-list-group-item>
+          <b-list-group-item button disabled>{{bill.dueDate}}</b-list-group-item>
+          <b-list-group-item button>${{bill.amountDue}}</b-list-group-item>
+        </b-list-group>
+      </div>
+      <b-button-toolbar>
+        <b-button-group class="mx-auto my-3 p-1">
+          <b-btn @click="showEditBill">Edit</b-btn>
+          <b-btn @click="deleteBill">Delete</b-btn>
+          <b-btn v-if="edit">Submit</b-btn>
+        </b-button-group>
+      </b-button-toolbar>
+      <b-container fluid>
+        <form v-show="edit" @submit.prevent.self="editBill">
+          <b-form-group>
+            <b-form-input :type="'text'" v-model="bill.companyName" required></b-form-input>
+            <b-form-input :type="'text'" v-model="bill.billName" required></b-form-input>
+            <b-form-input :type="'number'" v-model="bill.amountDue" required></b-form-input>
+            <b-form-input :type="'number'" v-model="bill.dueDate" required></b-form-input>
+          </b-form-group>
+        </form>
+      </b-container>
     </b-card>
+  </b-col>
 </template>
 
 <script>

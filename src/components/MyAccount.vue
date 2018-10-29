@@ -4,17 +4,20 @@
       <h1>You must sign in to access this page!</h1>
     </div>
     <div v-if="authenticated">
-      <div class="centerStyle">
-        <h1>Welcome to you accout: <br> {{accountInfo.user_name}}</h1>
-        <h1>TOTAL BILL DUE: <br> {{getTotal}}</h1>
-        <AddBillForm />
-      </div>
-      <b-card-group deck class="mb-3">
-        <div class="billsStyle">
-          <BillCard v-for="bill in accountInfo.bills" :key='bill.id' :bill='bill' v-on:deleteBill="deleteBill"
-            v-on:editBill="editBill" />
-        </div>
-      </b-card-group>
+      <b-container>
+        <b-row>
+          <b-col sm="12" class="p-0 mx-auto">
+            <b-card-group>
+              <UserCard :user="accountInfo" />
+              <AddBillForm :userID="userID" />
+            </b-card-group>
+            <b-card-group deck class="m-0">
+              <BillCard v-for="bill in accountInfo.bills" :key='bill.id' :bill='bill' v-on:deleteBill="deleteBill"
+                v-on:editBill="editBill" />
+            </b-card-group>
+          </b-col>
+        </b-row>
+      </b-container>
     </div>
   </div>
 </template>
@@ -22,6 +25,7 @@
 <script>
 import BillCard from './BillCard'
 import AddBillForm from './AddBillForm'
+import UserCard from './UserCard'
 import { Promise } from 'bluebird';
 
 const userID = localStorage.getItem('user_id')
@@ -31,7 +35,8 @@ export default {
   props: ['auth','authenticated'],
   components: {
     BillCard,
-    AddBillForm
+    AddBillForm,
+    UserCard
   },
   data () {
     return {
@@ -98,24 +103,12 @@ export default {
 </script>
 
 <style scoped>
-.billsStyle{
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: center;
-  width: 100%;
-}
-
-.card-deck .card {
-  flex: 2 1 auto;
-  width: 40%;
-  margin: 20px;
-}
 
 .centerStyle {
   display: flex;
   flex-direction: column;
   text-align: center;
+  padding-bottom: 10px;
 }
 
 </style>

@@ -1,26 +1,25 @@
 <template>
-  <div class="formStyle">
-    <b-btn size="lg" v-b-toggle.collapseAddBill click>Add Bill</b-btn>
-    <b-collapse id="collapseAddBill">
-      <div class="billFormStyle">
-        <form @submit.prevent.self="addBill">
-          <!-- <form> -->
-          <label for="companyName">Company Name: </label>
-          <input type="text" v-model="addBillObject.companyName" name="companyName" id="companyName">
-          <br>
-          <label for="billName">Bill Name: </label>
-          <input type="text" v-model="addBillObject.billName" name="billName" id="billName">
-          <br>
-          <label for="dueDate">Due Date: </label>
-          <input type="text" v-model="addBillObject.dueDate" name="dueDate" id="dueDate">
-          <br>
-          <label for="amountDue">Amount Due: </label>
-          <input type="number" v-model="addBillObject.amountDue" name="amountDue" id="amountDue">
-          <br>
-          <button type="submit" value="Submit Bill"> Submit </button>
-        </form>
+  <div>
+    <b-container fluid>
+        <form @submit="addBill">
+      <div class="mx-auto p-3">
+          <b-button class="mx-auto" type="submit">Add Bill</b-button>
       </div>
-    </b-collapse>
+      <div>
+          <b-row>
+            <b-col md="12 p-0">
+              <b-col md="12 mx-auto">
+                  <b-form-input :type="'text'" placeholder="Company Name" v-model="addBillObject.companyName" required></b-form-input>
+                  <b-form-input :type="'text'" placeholder="Bill Name" v-model="addBillObject.billName" required></b-form-input>
+                  <b-form-input :type="'number'" placeholder="Amount Due" min="1" v-model="addBillObject.amountDue" required></b-form-input>
+                  <b-form-input :type="'number'" placeholder="Due Date" min="1" max="31" v-model="addBillObject.dueDate"
+                    required></b-form-input>
+              </b-col>
+            </b-col>
+          </b-row>
+      </div>
+        </form>
+    </b-container>
   </div>
 </template>
 
@@ -31,12 +30,12 @@ export default {
   data () {
     return {
       //******FIX THIS ROUTE TO BE USER SPECIFIC */
-      addBillURL: "https://corys-capstone.herokuapp.com/bills/add/",
+      addBillURL: "http://localhost:3000/bills/add/",
       addBillObject: {
         companyName: "",
         billName: "",
-        dueDate: "",
-        amountDue: ""
+        dueDate: 0,
+        amountDue: 0
       }
     }
   },
@@ -44,34 +43,27 @@ export default {
     addBill: function (){
       this.getUserID()
       // const userID = localStorage.getItem('user_id')
-      .then(userID => this.$http.put(this.addBillURL+userID, this.addBillObject))
+      .then(userID => 
+      // console.log('hello',this.addBillURL+this.userID, this.addBillObject);
+      
+      this.$http.put(this.addBillURL+this.userID, this.addBillObject)
+      )
       .then(result => window.location.reload())
     },
     getUserID: function (auth = this.auth) {
       return new Promise(function(resolve, reject) {
-        const userID = localStorage.getItem('user_id')
-        resolve(userID)
+        // const userID = localStorage.getItem('user_id')
+        resolve(true)
       })
+    },
+    toggleAdd: function () {
+      this.toggleAddButton = !this.toggleAddButton
     }
   }
 }
 </script>
 
 <style scoped>
-.billFormStyle {
-  display: flex;
-  flex-direction: column;
-  text-align: center;
-  border: 3px solid black;
-  width: 30%;
-  margin: 10px auto;
-  padding: 10px;
-}
 
-.formStyle {
-  display: flex;
-  flex-direction: column;
-  text-align: center;
-}
 </style>
 
