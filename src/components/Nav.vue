@@ -2,16 +2,16 @@
   <div>
     <b-navbar class="navStyle" variant="faded">
       <b-navbar-nav>
-        <b-nav-item>
+        <!-- <b-nav-item>
           <b-btn v-b-toggle.collapse1>Menu</b-btn>
-        </b-nav-item>
+        </b-nav-item> -->
         <b-nav-item>
           <b-btn v-if="!authenticated" @click="auth.login()">LogIn</b-btn>
         </b-nav-item>
         <b-nav-item>
           <b-btn v-if="authenticated" @click="auth.logout()">LogOut</b-btn>
         </b-nav-item>
-        <b-collapse id="collapse1">
+        <!-- <b-collapse id="collapse1">
           <b-nav-item>
             <router-link to="/">
               Home
@@ -22,7 +22,7 @@
               My Account
             </router-link>
           </b-nav-item>
-        </b-collapse>
+        </b-collapse> -->
       </b-navbar-nav>
     </b-navbar>
   </div>
