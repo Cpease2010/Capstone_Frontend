@@ -6,13 +6,24 @@
     <div v-if="authenticated">
       <b-container>
         <b-row>
-          <b-col sm="12" class="p-0 mx-auto">
+          <b-col md="12" class="p-0 mx-auto">
             <b-card-group>
+              <b-col>
               <UserCard :user="accountInfo" />
+              </b-col>
+              <b-col>
               <AddBillForm :userID="userID" />
+              </b-col>
+              <b-col>
+              <AccountAlerts :total="this.getTotal" :accountInfo="accountInfo.bills"/>
+              </b-col>
             </b-card-group>
             <b-card-group deck class="m-0">
-              <BillCard v-for="bill in accountInfo.bills" :key='bill.id' :bill='bill' v-on:deleteBill="deleteBill"
+              <BillCard 
+                v-for="bill in accountInfo.bills" 
+                :key='bill.id' 
+                :bill='bill' 
+                v-on:deleteBill="deleteBill"
                 v-on:editBill="editBill" />
             </b-card-group>
           </b-col>
@@ -26,6 +37,7 @@
 import BillCard from './BillCard'
 import AddBillForm from './AddBillForm'
 import UserCard from './UserCard'
+import AccountAlerts from './AccountAlerts'
 import { Promise } from 'bluebird';
 
 const userID = localStorage.getItem('user_id')
@@ -36,7 +48,8 @@ export default {
   components: {
     BillCard,
     AddBillForm,
-    UserCard
+    UserCard,
+    AccountAlerts
   },
   data () {
     return {
