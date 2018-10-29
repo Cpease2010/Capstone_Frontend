@@ -40,7 +40,6 @@ export default {
   },
   data () {
     return {
-      //******FIX THIS ROUTE TO BE USER SPECIFIC */
       URLS: {
         getAccountURL: "https://corys-capstone.herokuapp.com/user/",
         deleteBillURL: "https://corys-capstone.herokuapp.com/bills/",

@@ -17,8 +17,6 @@
               Home
             </router-link>
           </b-nav-item>
-          <b-nav-item>About</b-nav-item>
-          <b-nav-item>How It Works</b-nav-item>
           <b-nav-item>
             <router-link to="/myaccount">
               My Account

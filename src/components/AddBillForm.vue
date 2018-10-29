@@ -29,7 +29,6 @@ export default {
   props: ['userID'],
   data () {
     return {
-      //******FIX THIS ROUTE TO BE USER SPECIFIC */
       addBillURL: "https://corys-capstone.herokuapp.com/bills/add/",
       addBillObject: {
         companyName: "",
@@ -42,17 +41,11 @@ export default {
   methods: {
     addBill: function (){
       this.getUserID()
-      // const userID = localStorage.getItem('user_id')
-      .then(userID => 
-      // console.log('hello',this.addBillURL+this.userID, this.addBillObject);
-      
-      this.$http.put(this.addBillURL+this.userID, this.addBillObject)
-      )
+      .then(userID => this.$http.put(this.addBillURL+this.userID, this.addBillObject))
       .then(result => window.location.reload())
     },
     getUserID: function (auth = this.auth) {
       return new Promise(function(resolve, reject) {
-        // const userID = localStorage.getItem('user_id')
         resolve(true)
       })
     },

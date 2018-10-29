@@ -40,12 +40,10 @@ export default class AuthService {
   handleAuthentication () {
     this.auth0.parseHash((err, authResult) => {
       if (authResult && authResult.accessToken && authResult.idToken) {
-        console.log(authResult.userProfile, authResult)
         this.setSession(authResult)
         router.replace('myaccount')
       } else if (err) {
         router.replace('/')
-        console.log(err)
       }
     })
   }
@@ -61,6 +59,7 @@ export default class AuthService {
     localStorage.setItem('user_id', authResult.idTokenPayload.sub)
     localStorage.setItem('user_name', authResult.idTokenPayload.name)
     localStorage.setItem('email', authResult.idTokenPayload.email)
+    localStorage.setItem('picture', authResult.idTokenPayload.picture)
     this.authNotifier.emit('authChange', { authenticated: true })
   }
 
@@ -72,6 +71,7 @@ export default class AuthService {
     localStorage.removeItem('user_id')
     localStorage.removeItem('user_name')
     localStorage.removeItem('email')
+    localStorage.removeItem('picture')
     this.userProfile = null
     this.authNotifier.emit('authChange', false)
     // navigate to the home route

@@ -43,9 +43,3 @@ export default {
   }
 }
 </script>
-
-<style>
-/* #mainStyle {
-  height: 80vh;
-} */
-</style>
