@@ -33,8 +33,8 @@ export default {
       addBillObject: {
         companyName: "",
         billName: "",
-        dueDate: 0,
-        amountDue: 0
+        dueDate: "",
+        amountDue: ""
       }
     }
   },

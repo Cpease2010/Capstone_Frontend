@@ -3,10 +3,10 @@
     <b-card bg-variant="" text-variant="black" class="m-0 text-center">
       <div v-show="!edit">
         <b-list-group>
-          <b-list-group-item button>{{bill.companyName.toUpperCase()}}</b-list-group-item>
-          <b-list-group-item button>{{bill.billName.toUpperCase()}}</b-list-group-item>
-          <b-list-group-item button disabled>{{bill.dueDate}}</b-list-group-item>
-          <b-list-group-item button>${{bill.amountDue}}</b-list-group-item>
+          <b-list-group-item>{{bill.companyName.toUpperCase()}}</b-list-group-item>
+          <b-list-group-item>{{bill.billName.toUpperCase()}}</b-list-group-item>
+          <b-list-group-item>Day {{bill.dueDate}}</b-list-group-item>
+          <b-list-group-item>${{bill.amountDue}}</b-list-group-item>
         </b-list-group>
       </div>
       <b-button-toolbar>
