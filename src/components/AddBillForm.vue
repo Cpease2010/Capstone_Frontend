@@ -1,26 +1,25 @@
 <template>
   <div>
-    <b-btn size="lg" v-b-toggle.collapseAddBill click>New Bill</b-btn>
-    <b-collapse id="collapseAddBill">
-      <div>
-        <b-container fluid>
-          <form @submit.prevent.self="addBill" class="billFormStyle w-50 p-3 mx-auto">
-            <b-form-group>
-              <b-row>
-                <b-col sm="12 p-0">
-                    <b-col sm="5 mx-auto">
-                      <b-form-input :type="'text'" placeholder="Verizon" v-model="addBillObject.companyName" required></b-form-input>
-                      <b-form-input :type="'text'" placeholder="Phone Bill" v-model="addBillObject.billName" required></b-form-input>
-                      <b-form-input :type="'number'" placeholder="100" v-model="addBillObject.amountDue" required></b-form-input>                      <b-form-input :type="'date'" placeholder="Please enter Due Date" v-model="addBillObject.dueDate" required></b-form-input>
-                    </b-col>
-                </b-col>
-              </b-row>
-            </b-form-group>
-            <b-button type="submit">Add Bill</b-button>
-          </form>
-        </b-container>
+    <b-container fluid>
+        <form @submit="addBill">
+      <div class="mx-auto p-3">
+          <b-button class="mx-auto" type="submit">Add Bill</b-button>
       </div>
-    </b-collapse>
+      <div>
+          <b-row>
+            <b-col md="12 p-0">
+              <b-col md="12 mx-auto">
+                  <b-form-input :type="'text'" placeholder="Company Name" v-model="addBillObject.companyName" required></b-form-input>
+                  <b-form-input :type="'text'" placeholder="Bill Name" v-model="addBillObject.billName" required></b-form-input>
+                  <b-form-input :type="'number'" placeholder="Amount Due" min="1" v-model="addBillObject.amountDue" required></b-form-input>
+                  <b-form-input :type="'number'" placeholder="Due Date" min="1" max="31" v-model="addBillObject.dueDate"
+                    required></b-form-input>
+              </b-col>
+            </b-col>
+          </b-row>
+      </div>
+        </form>
+    </b-container>
   </div>
 </template>
 
@@ -35,8 +34,8 @@ export default {
       addBillObject: {
         companyName: "",
         billName: "",
-        dueDate: "",
-        amountDue: ""
+        dueDate: 0,
+        amountDue: 0
       }
     }
   },
@@ -56,6 +55,9 @@ export default {
         // const userID = localStorage.getItem('user_id')
         resolve(true)
       })
+    },
+    toggleAdd: function () {
+      this.toggleAddButton = !this.toggleAddButton
     }
   }
 }

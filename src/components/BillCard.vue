@@ -1,24 +1,32 @@
 <template>
-<b-col md="3 p-1">
-  <b-card bg-variant="success" text-variant="white" class="text-center">
-    <h5 class="card-text">{{bill.companyName.toUpperCase()}}</h5>
-    <h5 class="card-text">{{bill.billName.toUpperCase()}}</h5>
-    <h5 class="card-text">{{bill.dueDate.slice(0,10)}}</h5>
-    <h5 class="card-text">${{bill.amountDue}}</h5>
-    <b-btn @click="showEditBill">Edit</b-btn>
-    <b-btn v-on:click="deleteBill">Delete</b-btn>
-    <b-container fluid class="my-3">
-      <form v-show="edit" @submit.prevent.self="editBill">
-        <b-form-group>
+  <b-col md="3 p-1">
+    <b-card bg-variant="" text-variant="black" class="m-0 text-center">
+      <div v-show="!edit">
+        <b-list-group>
+          <b-list-group-item button>{{bill.companyName.toUpperCase()}}</b-list-group-item>
+          <b-list-group-item button>{{bill.billName.toUpperCase()}}</b-list-group-item>
+          <b-list-group-item button disabled>{{bill.dueDate}}</b-list-group-item>
+          <b-list-group-item button>${{bill.amountDue}}</b-list-group-item>
+        </b-list-group>
+      </div>
+      <b-button-toolbar>
+        <b-button-group class="mx-auto my-3 p-1">
+          <b-btn @click="showEditBill">Edit</b-btn>
+          <b-btn @click="deleteBill">Delete</b-btn>
+          <b-btn v-if="edit">Submit</b-btn>
+        </b-button-group>
+      </b-button-toolbar>
+      <b-container fluid>
+        <form v-show="edit" @submit.prevent.self="editBill">
+          <b-form-group>
             <b-form-input :type="'text'" v-model="bill.companyName" required></b-form-input>
             <b-form-input :type="'text'" v-model="bill.billName" required></b-form-input>
             <b-form-input :type="'number'" v-model="bill.amountDue" required></b-form-input>
-            <b-form-input :type="'date'" v-model="bill.dueDate" required></b-form-input>
-        </b-form-group>
-      </form>
-    </b-container>
-    <b-button v-show="edit" type="submit">Add Bill</b-button>
-  </b-card>
+            <b-form-input :type="'number'" v-model="bill.dueDate" required></b-form-input>
+          </b-form-group>
+        </form>
+      </b-container>
+    </b-card>
   </b-col>
 </template>
 
