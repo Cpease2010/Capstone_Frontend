@@ -4,7 +4,7 @@
       <h1>You must sign in to access this page!</h1>
     </div>
     <div v-if="authenticated">
-      <b-container>
+      <b-container class="p-0">
         <b-row>
           <b-col md="12" class="p-0 mx-auto">
             <b-card-group>
@@ -103,30 +103,21 @@ export default {
     }
   },
   mounted() {
-      this.getUserID() 
+    this.getUserID() 
       .then(user => this.userLogin(user))
       .then(result => result.json())
       .then(account => {
-        this.accountInfo = account.newUser
-        this.userID = account.newUser.user_ID
-        })
+      this.accountInfo = account.newUser
+      this.userID = account.newUser.user_ID
+    })
   }
 }
 </script>
 
 <style scoped>
-
-.centerStyle {
-  display: flex;
-  flex-direction: column;
-  text-align: center;
-  padding-bottom: 10px;
-}
-
 @media(max-width: 700px){
   .col{
     flex-basis: auto;
   }
 }
-
 </style>
