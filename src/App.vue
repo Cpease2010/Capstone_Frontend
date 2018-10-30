@@ -1,5 +1,5 @@
 <template>
-  <div id="mainStyle">
+  <div id="full">
     <Nav 
       :auth='auth'
       :authenticated="authenticated"/>
@@ -43,3 +43,9 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+div#full {
+    height: 100vh;
+}
+</style>

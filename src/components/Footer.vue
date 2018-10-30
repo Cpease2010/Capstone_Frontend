@@ -26,6 +26,9 @@ li {
   display: flex;
   justify-content: center;
   text-align: center;
+  position:relative;
+  width: 100vw;
+  bottom:0;
 }
 </style>
 

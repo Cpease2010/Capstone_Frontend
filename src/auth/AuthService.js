@@ -27,6 +27,7 @@ export default class AuthService {
     domain: 'undercoverdev.auth0.com',
     clientID: 'khfWDFwh0V5Oes6oD6dt1ROTPfZaWroJ',
     redirectUri: 'https://foundationfinance-f81fc.firebaseapp.com/callback',
+    // redirectUri: 'http://localhost:8080/callback',
     responseType: 'token id_token',
     scope: 'openid profile email',
     options

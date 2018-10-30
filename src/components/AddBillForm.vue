@@ -1,24 +1,26 @@
 <template>
   <div>
     <b-container fluid>
-        <form @submit.prevent.self="addBill">
-      <div class="mx-auto p-3">
-          <b-button class="mx-auto" type="submit">Add Bill</b-button>
-      </div>
-      <div>
+      <form @submit.prevent.self="addBill">
+
+        <div>
           <b-row>
             <b-col md="12 p-0">
               <b-col md="12 mx-auto">
-                  <b-form-input :type="'text'" placeholder="Company Name" v-model="addBillObject.companyName" required></b-form-input>
-                  <b-form-input :type="'text'" placeholder="Bill Name" v-model="addBillObject.billName" required></b-form-input>
-                  <b-form-input :type="'number'" placeholder="Amount Due" min="1" v-model="addBillObject.amountDue" required></b-form-input>
-                  <b-form-input :type="'number'" placeholder="Due Date" min="1" max="31" v-model="addBillObject.dueDate"
-                    required></b-form-input>
+                <b-form-input :type="'text'" placeholder="Company Name" v-model="addBillObject.companyName" required></b-form-input>
+                <b-form-input :type="'text'" placeholder="Bill Name" v-model="addBillObject.billName" required></b-form-input>
+                <b-form-input :type="'number'" step="0.01" placeholder="Amount Due" min="1" v-model="addBillObject.amountDue" required></b-form-input>
+                <b-form-input :type="'number'" placeholder="Due Date" min="1" max="31" v-model="addBillObject.dueDate" required></b-form-input>
               </b-col>
             </b-col>
           </b-row>
-      </div>
-        </form>
+        </div>
+        <div class="mx-auto my-3 p-1 w-100">
+          <div class="mx-auto">
+          <b-button class="mx-auto" type="submit">Add Bill</b-button>
+          </div>
+        </div>
+      </form>
     </b-container>
   </div>
 </template>

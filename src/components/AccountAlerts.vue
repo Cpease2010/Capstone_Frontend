@@ -1,10 +1,10 @@
 <template>
   <div>
     <b-alert show variant="primary">
-      You have ${{this.total}} in bills.
+      You have <b>${{this.total}}</b> in bills.
     </b-alert>
     <b-alert show variant="primary">
-      Made up of {{this.accountInfo.length}} bills.
+      Made up of <b>{{this.accountInfo.length}}</b> bills.
     </b-alert>
   </div>
 </template>

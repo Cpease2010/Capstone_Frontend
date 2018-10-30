@@ -9,13 +9,13 @@
           <b-col md="12" class="p-0 mx-auto">
             <b-card-group>
               <b-col>
-              <UserCard :user="accountInfo" />
+              <UserCard class="mt-3 mb-0" :user="accountInfo" />
               </b-col>
               <b-col>
-              <AddBillForm :userID="userID" />
+              <AddBillForm  class="mt-3 mb-0" :userID="userID" />
               </b-col>
               <b-col>
-              <AccountAlerts :total="this.getTotal" :accountInfo="accountInfo.bills"/>
+              <AccountAlerts class="mt-3 mb-0" :total="this.getTotal" :accountInfo="accountInfo.bills"/>
               </b-col>
             </b-card-group>
             <b-card-group deck class="m-0">
@@ -99,7 +99,7 @@ export default {
       this.accountInfo.bills.forEach(bill => {
         billAmounts += bill.amountDue
       });
-      return billAmounts
+      return billAmounts.toFixed(2)
     }
   },
   mounted() {
@@ -121,6 +121,12 @@ export default {
   flex-direction: column;
   text-align: center;
   padding-bottom: 10px;
+}
+
+@media(max-width: 700px){
+  .col{
+    flex-basis: auto;
+  }
 }
 
 </style>

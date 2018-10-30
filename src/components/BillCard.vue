@@ -3,10 +3,10 @@
     <b-card bg-variant="" text-variant="black" class="m-0 text-center">
       <div v-show="!edit">
         <b-list-group>
-          <b-list-group-item>{{bill.companyName.toUpperCase()}}</b-list-group-item>
-          <b-list-group-item>{{bill.billName.toUpperCase()}}</b-list-group-item>
-          <b-list-group-item>Day {{bill.dueDate}}</b-list-group-item>
-          <b-list-group-item>${{bill.amountDue}}</b-list-group-item>
+          <b-list-group-item variant="dark">{{bill.companyName.toUpperCase()}}</b-list-group-item>
+          <b-list-group-item variant="dark">{{bill.billName.toUpperCase()}}</b-list-group-item>
+          <b-list-group-item variant="warning"><b>Day {{bill.dueDate}}</b></b-list-group-item>
+          <b-list-group-item variant="success"><b>${{bill.amountDue}}</b></b-list-group-item>
         </b-list-group>
       </div>
       <b-button-toolbar>
@@ -21,8 +21,8 @@
           <b-form-group>
             <b-form-input :type="'text'" v-model="bill.companyName" required></b-form-input>
             <b-form-input :type="'text'" v-model="bill.billName" required></b-form-input>
-            <b-form-input :type="'number'" v-model="bill.amountDue" required></b-form-input>
             <b-form-input :type="'number'" v-model="bill.dueDate" required></b-form-input>
+            <b-form-input :type="'number'" step="0.01" v-model="bill.amountDue" required></b-form-input>
           </b-form-group>
         </form>
       </b-container>
