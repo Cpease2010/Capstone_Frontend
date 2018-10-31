@@ -1,7 +1,7 @@
 <template>
   <div>
     <b-card :title="user.user_name" :img-src="picture"
-      img-alt="Image" img-top tag="article" style="max-width: 20rem;" class="mx-auto">
+      img-alt="Image" img-top tag="article" style="width: 100%" class="mx-auto">
     </b-card>
   </div>
 </template>

@@ -9,21 +9,23 @@
           <b-col md="12" class="p-0 mx-auto">
             <b-card-group>
               <b-col>
-              <UserCard class="mt-3 mb-0" :user="accountInfo" />
+                <b-card-group>
+                  <UserCard class="mt-3 mb-0" :user="accountInfo" />
+                </b-card-group>
               </b-col>
               <b-col>
-              <AddBillForm  class="mt-3 mb-0" :userID="userID" />
+                <b-card-group>
+                  <AddBillForm class="mt-3 mb-0" :userID="userID" />
+                </b-card-group>
               </b-col>
               <b-col>
-              <AccountAlerts class="mt-3 mb-0" :total="this.getTotal" :accountInfo="accountInfo.bills"/>
+                <b-card-group>
+                  <AccountAlerts class="w-100 mt-3 mb-0" :total="this.getTotal" :accountInfo="accountInfo.bills" />
+                </b-card-group>
               </b-col>
             </b-card-group>
             <b-card-group deck class="m-0">
-              <BillCard 
-                v-for="bill in accountInfo.bills" 
-                :key='bill.id' 
-                :bill='bill' 
-                v-on:deleteBill="deleteBill"
+              <BillCard v-for="bill in accountInfo.bills" :key='bill.id' :bill='bill' v-on:deleteBill="deleteBill"
                 v-on:editBill="editBill" />
             </b-card-group>
           </b-col>
@@ -54,7 +56,7 @@ export default {
   data () {
     return {
       URLS: {
-        getAccountURL: "https://corys-capstone.herokuapp.com/user/",
+        getAccountURL: "http://localhost:3000/user/",
         deleteBillURL: "https://corys-capstone.herokuapp.com/bills/",
         editBillURL: "https://corys-capstone.herokuapp.com/bills/update/"
       },
