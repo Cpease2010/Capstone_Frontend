@@ -56,7 +56,7 @@ export default {
   data () {
     return {
       URLS: {
-        getAccountURL: "http://localhost:3000/user/",
+        getAccountURL: "https://corys-capstone.herokuapp.com/user/",
         deleteBillURL: "https://corys-capstone.herokuapp.com/bills/",
         editBillURL: "https://corys-capstone.herokuapp.com/bills/update/"
       },
