@@ -4,26 +4,28 @@
       <h1>You must sign in to access this page!</h1>
     </div>
     <div v-if="authenticated">
-      <b-container>
+      <b-container class="p-0">
         <b-row>
           <b-col md="12" class="p-0 mx-auto">
             <b-card-group>
               <b-col>
-              <UserCard class="mt-3 mb-0" :user="accountInfo" />
+                <b-card-group>
+                  <UserCard class="mt-3 mb-0" :user="accountInfo" />
+                </b-card-group>
               </b-col>
               <b-col>
-              <AddBillForm  class="mt-3 mb-0" :userID="userID" />
+                <b-card-group>
+                  <AddBillForm class="mt-3 mb-0" :userID="userID" />
+                </b-card-group>
               </b-col>
               <b-col>
-              <AccountAlerts class="mt-3 mb-0" :total="this.getTotal" :accountInfo="accountInfo.bills"/>
+                <b-card-group>
+                  <AccountAlerts class="w-100 mt-3 mb-0" :total="this.getTotal" :accountInfo="accountInfo.bills" />
+                </b-card-group>
               </b-col>
             </b-card-group>
             <b-card-group deck class="m-0">
-              <BillCard 
-                v-for="bill in accountInfo.bills" 
-                :key='bill.id' 
-                :bill='bill' 
-                v-on:deleteBill="deleteBill"
+              <BillCard v-for="bill in accountInfo.bills" :key='bill.id' :bill='bill' v-on:deleteBill="deleteBill"
                 v-on:editBill="editBill" />
             </b-card-group>
           </b-col>
@@ -54,7 +56,7 @@ export default {
   data () {
     return {
       URLS: {
-        getAccountURL: "https://corys-capstone.herokuapp.com/user/",
+        getAccountURL: "http://localhost:3000/user/",
         deleteBillURL: "https://corys-capstone.herokuapp.com/bills/",
         editBillURL: "https://corys-capstone.herokuapp.com/bills/update/"
       },
@@ -103,30 +105,21 @@ export default {
     }
   },
   mounted() {
-      this.getUserID() 
+    this.getUserID() 
       .then(user => this.userLogin(user))
       .then(result => result.json())
       .then(account => {
-        this.accountInfo = account.newUser
-        this.userID = account.newUser.user_ID
-        })
+      this.accountInfo = account.newUser
+      this.userID = account.newUser.user_ID
+    })
   }
 }
 </script>
 
 <style scoped>
-
-.centerStyle {
-  display: flex;
-  flex-direction: column;
-  text-align: center;
-  padding-bottom: 10px;
-}
-
 @media(max-width: 700px){
   .col{
     flex-basis: auto;
   }
 }
-
 </style>
