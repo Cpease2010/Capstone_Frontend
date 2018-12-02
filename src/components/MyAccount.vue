@@ -32,6 +32,7 @@
         </b-row>
       </b-container>
     </div>
+    <Dates></Dates>
   </div>
 </template>
 
@@ -40,7 +41,8 @@ import BillCard from './BillCard'
 import AddBillForm from './AddBillForm'
 import UserCard from './UserCard'
 import AccountAlerts from './AccountAlerts'
-import { Promise } from 'bluebird';
+import { Promise } from 'bluebird'
+import Dates from './Dates'
 
 const userID = localStorage.getItem('user_id')
 
@@ -51,7 +53,8 @@ export default {
     BillCard,
     AddBillForm,
     UserCard,
-    AccountAlerts
+    AccountAlerts,
+    Dates
   },
   data () {
     return {
@@ -89,7 +92,7 @@ export default {
         resolve(user)
       })
     },
-    userLogin: function (user) {
+    userLogin(user) {
       if (user.user_ID) {
         return this.$http.post(this.URLS.getAccountURL+user.user_ID, user)
       }
