@@ -32,7 +32,6 @@
         </b-row>
       </b-container>
     </div>
-    <Dates></Dates>
   </div>
 </template>
 
@@ -42,7 +41,6 @@ import AddBillForm from './AddBillForm'
 import UserCard from './UserCard'
 import AccountAlerts from './AccountAlerts'
 import { Promise } from 'bluebird'
-import Dates from './Dates'
 
 const userID = localStorage.getItem('user_id')
 
@@ -53,8 +51,7 @@ export default {
     BillCard,
     AddBillForm,
     UserCard,
-    AccountAlerts,
-    Dates
+    AccountAlerts
   },
   data () {
     return {
